@@ -22,7 +22,6 @@ O(n^2) + O(n) -> O(n^2 + n) -> O(n^2)
 
 
 # 12. BigO: different terms for inputs
-
 def print_items(a, b): # O(a+b)
     for i in range(a):
         print(i)
