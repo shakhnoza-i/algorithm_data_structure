@@ -95,11 +95,11 @@ class LinkedList:
 
     """30.LL:Insert"""
     def insert(self, index, value):
-        if index < 0 or index >= self.length:
+        if index < 0 or index > self.length:
             return False # cause if successful we return True
         if index == 0:
             return self.prepend(value)
-        if index == self.length - 1:
+        if index == self.length:
             return self.append(value)
         new_node = Node(value)
         temp = self.get(index -1)
