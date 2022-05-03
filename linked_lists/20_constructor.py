@@ -30,7 +30,7 @@ class LinkedList:
         else: 
             self.tail.next = new_node
             self.tail = new_node
-            self.length += 1
+        self.length += 1
         return True
 
     """25.LL:Pop"""
