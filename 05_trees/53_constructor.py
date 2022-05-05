@@ -60,6 +60,58 @@ class BinarySearchTree:
             current_node = current_node.left
         return current_node
 
+    """97.BFS: Code - traverse and print all values in bst"""
+    def bfs(self):
+        current_node = self.root
+        results = []
+        queue = []
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return results # list is in the same order as tree itself - 
+                       # row by row from top to bottom
+
+    """99.DFS preorder: Code"""
+    def dfs_preorder(self):
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+        traverse(self.root)
+        return results
+
+    """101.DFS postorder: Code"""
+    def dfs_postorder(self):
+        results = []
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+            results.append(current_node.value)
+        traverse(self.root)
+        return results
+
+    """103.DFS inorder: Code"""
+    def dfs_inorder(self):
+        results = []
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            results.append(current_node.value) 
+            if current_node.right is not None:
+                traverse(current_node.right)
+        traverse(self.root)
+        return results
+
 
 my_tree = BinarySearchTree()
 
@@ -78,3 +130,4 @@ print(my_tree.contains(7)) # True
 print(my_tree.contains(14)) # False
 print(my_tree.minimum_value(my_tree.root)) # 2
 print(my_tree.minimum_value(my_tree.root.right)) # 10
+print(my_tree.bfs())
