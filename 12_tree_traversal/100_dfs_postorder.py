@@ -13,3 +13,4 @@ def dfs_postorder(self):
         results.append(current_node.value)
     traverse(self.root)
     return results
+    
