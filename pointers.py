@@ -23,5 +23,5 @@ print("dict2 = ", dict2) # dict2 = {'value': 12}
 print("dict1 points to: ", id(dict1)) # they are pointing to the same place in memory
 print("dict2 points to: ", id(dict2))
 
-# if you don't have any variable pointing to the  existing dictionary - in this 
+# if you don't have any variable pointing to the existing dictionary - in this 
 # situation Python will remove this through a process called garbage collection.

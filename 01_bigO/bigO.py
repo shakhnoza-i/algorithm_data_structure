@@ -21,7 +21,7 @@ O(n^2) + O(n) -> O(n^2 + n) -> O(n^2)
 """
 
 
-# 12. BigO: different terms for inputs
+"""12. BigO: different terms for inputs"""
 def print_items(a, b): # O(a+b)
     for i in range(a):
         print(i)
@@ -35,9 +35,9 @@ def print_items(a, b): # O(a*b)
             print(i, j)
 
 
-# 13. BigO: Lists - O(n)
+""" 13. BigO: Lists - O(n)"""
 my_list = [18, 25, 12] 
-#  it doesn't matter if you're removing or if you're adding to a list - O(n)
+#  it doesn't matter if you're removing or if you're adding to the beginning of list - O(n)
 
 """
 14. BigO: Wrap Up
