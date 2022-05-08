@@ -1,3 +1,4 @@
+from collections import Counter
 
 class Solution:
 
@@ -44,6 +45,39 @@ class Solution:
         else: 
             return True
 
+# we use bit manipulation here - XOR - return zero if two bits exact same
+    def singleNumber(self, nums): # O(1) memory solution
+        res = 0 # 1^0=1, 0^0=0 -if second bit is 0, result equal to first bit
+        for n in nums:
+            res = n ^ res
+        return res
+
+# this algorithm better for 3 case
+    def intersect(self, nums1, nums2): # O(n) space and time complexity
+        c = Counter(nums1)
+        output = []
+        for n in nums2:
+            if c[n]>0:
+                output.append(n)
+                c[n]-=1
+        return output
+
+    def plusOne(self, digits):
+        digits = digits[::-1] # reverse digits
+        one, i = 1, 0
+        while one:
+            if i < len(digits):
+                if digits[i] == 9:
+                    digits[i] = 0
+                else:
+                    digits[i] += 1
+                    one = 0
+            else:
+                digits.append(1)
+                one = 0
+            i += 1
+        return digits[::-1]
+
 
 s = Solution()
 
@@ -54,3 +88,5 @@ print(s.maxProfit([7,6,4,3,1]))
 print(s.rotate_reverse([7,6,4,3,1], 2))
 print(s.containsDuplicate([7,6,4,3,1]))
 print(s.containsDuplicate([7,6,6,3,1]))
+print(s.intersect([1,3,5,1], [3,6,1,2]))
+print(s.plusOne([9,9,9,9,9]))
