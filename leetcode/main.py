@@ -78,6 +78,22 @@ class Solution:
             i += 1
         return digits[::-1]
 
+    def moveZeroes(self, nums): # same as removeDublicates
+        l = 0
+        for r in range(len(nums)):
+            if nums[r]:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+        return nums
+
+    def twoSum(self, nums, target):
+        prevMap = {} # val: index {n: i} - every previous value store
+        for i, n in enumerate(nums): # i - index, n - number
+            diff = target - n 
+            if diff in prevMap:
+                return [prevMap[diff], i] # first index, i - second index
+            prevMap[n] = i # for value n - index is i
+
 
 s = Solution()
 
@@ -90,3 +106,5 @@ print(s.containsDuplicate([7,6,4,3,1]))
 print(s.containsDuplicate([7,6,6,3,1]))
 print(s.intersect([1,3,5,1], [3,6,1,2]))
 print(s.plusOne([9,9,9,9,9]))
+print(s.moveZeroes([0,0,8,2,0,0,0,5]))
+print(s.twoSum([3,6,1,2], 3))
