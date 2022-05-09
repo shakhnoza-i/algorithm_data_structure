@@ -1,3 +1,4 @@
+import collections
 from collections import Counter
 
 class Solution:
@@ -93,6 +94,23 @@ class Solution:
             if diff in prevMap:
                 return [prevMap[diff], i] # first index, i - second index
             prevMap[n] = i # for value n - index is i
+
+    def isValidSudoku(self, board):
+        cols = collections.defaultdict(set) # key - column number, value - all values in column
+        rows = collections.defaultdict(set)
+        squares = collections.defaultdict(set) # key = (r/3, c/3)
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".": 
+                    continue
+                if (board[r][c] in rows[r] or
+                    board[r][c] in cols[c] or
+                    board[r][c] in squares[(r // 3, c // 3)]):
+                    return False
+                cols[c].add(board[r][c]) # update hash
+                rows[r].add(board[r][c])
+                squares[(r // 3, c // 3)].add(board[r][c])
+        return True
 
 
 s = Solution()
