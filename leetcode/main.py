@@ -130,6 +130,41 @@ class Solution:
             r -= 1
             l += 1
 
+    def exceptSelf(self, nums):
+        res = [1] * (len(nums))
+        prefix = 1
+        for i in range(len(nums)):
+            res[i] = prefix
+            prefix *= nums[i]
+        postfix = 1
+        for i in range(len(nums)-1, -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
+        return res
+
+    def max_subarray(self, nums): # O(n)
+        maxSub = nums[0]
+        curSum= 0
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum += n
+            maxSub = max(maxSub, curSum)
+        return maxSub
+
+# dynamic programming problem
+    def max_product(self, nums): # O(n)
+        res = max(nums)
+        curMin, curMax = 1, 1
+        for n in nums:
+            if n == 0:
+                curMin, curMax = 1, 1
+                continue
+            tmp = curMax * n
+            curMax = max(n * curMax, n * curMin, n)
+            curMin = min(tmp, n * curMin, n)
+            res = max(res, curMax)
+        return res
 
 
 s = Solution()
@@ -145,3 +180,6 @@ print(s.intersect([1,3,5,1], [3,6,1,2]))
 print(s.plusOne([9,9,9,9,9]))
 print(s.moveZeroes([0,0,8,2,0,0,0,5]))
 print(s.twoSum([3,6,1,2], 3))
+print(s.exceptSelf([1,2,3,4,5]))
+print(s.max_subarray([3,-5,1,3,-6,3]))
+print(s.max_product([-3,-5,-3]))
