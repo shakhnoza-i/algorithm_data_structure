@@ -87,7 +87,7 @@ class Solution:
                 l += 1
         return nums
 
-    def twoSum(self, nums, target):
+    def twoSum(self, nums, target): # HashMap solution
         prevMap = {} # val: index {n: i} - every previous value store
         for i, n in enumerate(nums): # i - index, n - number
             diff = target - n 
@@ -166,7 +166,8 @@ class Solution:
             res = max(res, curMax)
         return res
 
-    def find_min(self, nums): # rotated sorted array
+    def find_min(self, nums): # Sliding window technique - Two Pointers
+        # rotated sorted array
         res = nums[0]
         l, r = 0, len(nums) - 1
         while l <= r:

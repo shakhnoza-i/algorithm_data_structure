@@ -1,8 +1,9 @@
 import math
+from collections import defaultdict
 
 class Solution:
     
-    def reverseString(self, s):
+    def reverseString(self, s): # Two pointers solution
         # Time - O(n), Space - O(1)
         l, r = 0, len(s) - 1
         while l < r:
@@ -25,7 +26,8 @@ class Solution:
             res = (res * 10) + digit
         return res
 
-    def firstUniqChar(self, s): # O(n) for time and space complexity
+    def firstUniqChar(self, s): # HashMap solution
+        # O(n) for time and space complexity
         prevMap = {} # = index: Boolean value - {i: True} - every previous value store
         for i in range(len(s)): # i - index, True and False - value
             if s[i] not in prevMap:
@@ -78,12 +80,47 @@ class Solution:
 
     def longestCommonPrefix(self, strs):
         res = "" 
-        for i in range(len(strs[0])): # take first string first letter
+        for i in range(len(strs[0])): # take first letter of first string
             for s in strs: # s is a strings in list
                 if i == len(s) or s[i] != strs[0][i]:
                     return res
             res += strs[0][i]
         return res
 
+    def lengthOfUniqueSubstring(self, s):
+        charSet = set()
+        l = 0
+        res = 0
+        for r in range(len(s)):
+            while s[r] in charSet:   # remove the most left character
+                charSet.remove(s[l]) # until we don't have duplicates 
+                l += 1
+            charSet.add(s[r])
+            res = max(res, r - l + 1) # res - length of charSet
+        return res
+
+    def characterReplacement(self, s, k): # Sliding window technique - Two Pointers
+        count = {}
+        res = 0
+        l = 0
+        for r in range(len(s)):
+            count[s[r]] = 1 + count.get(s[r], 0)
+            while (r - l + 1) - max(count.values()) > k:
+                count[s[l]] -= 1
+                l += 1
+            res = max(res, r - l + 1)
+        return res
+
+    def groupAnagrams(self, strs): # O(m*n), m-number of strings, n-average length of strings
+        res = defaultdict(list) # mapping charCount to list of Anagrams
+        for s in strs:
+            count = [0] * 26 # a ... z
+            for c in s:
+                count[ord(c) - ord("a")] += 1 # a = 80, b = 81...-> a=80-80=0, b=81-80=1...
+            res[tuple(count)].append(s) # in python lists cannot be keys, so we use tuple()
+        return res.values()
+
 
 s = Solution()
+
+c = s.lengthOfUniqueSubstring("yfhdjfos")
