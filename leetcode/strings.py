@@ -120,7 +120,61 @@ class Solution:
             res[tuple(count)].append(s) # in python lists cannot be keys, so we use tuple()
         return res.values()
 
+    def isValidParentheses(self, s):
+        stack = []
+        closeToOpen = {")":"(", "]":"[", "}":"{"}
+        for c in s:
+            if c in closeToOpen: # we have ")", "]", "}" in closeToOpen
+            # check that the last added character corresponds to it's value
+                if stack and stack[-1] == closeToOpen[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+        return True if not stack else False
+
+    def longestPalindrome(self, s):
+        res = ""
+        resLen = 0
+        for i in range(len(s)): # take letter as mid and expand evenly on the sides
+            # odd length
+            l, r = i, i
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+            # even length
+            l, r = i, i+1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+        return res
+
+    def palindromeQuantity(self, s):
+        res = 0
+        for i in range(len(s)):
+            # odd length
+            l, r = i, i
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                res += 1
+                l -= 1
+                r += 1            
+            # even length
+            l, r = i, i+1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                res += 1
+                l -= 1
+                r += 1
+        return res
+
 
 s = Solution()
 
-c = s.lengthOfUniqueSubstring("yfhdjfos")
+a = s.lengthOfUniqueSubstring("yfhdjfos")
+b = s.isValidParentheses("]([{}))")
