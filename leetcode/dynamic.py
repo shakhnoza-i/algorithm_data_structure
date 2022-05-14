@@ -77,6 +77,19 @@ class Solution:
         return dp[0][0]
 
 
+    def wordBreak(self, s, wordDict):
+        dp = [False] * (len(s) + 1)
+        dp[len(s)] = True
+
+        for i in range(len(s)-1, -1, -1):
+            for w in wordDict: # for w(word) match to this portion
+                if (i + len(w)) <= len(s) and s[i: i + len(w)] == w:
+                    dp[i] = dp[i + len(w)]
+                if dp[i]: # if dp[i] is True,
+                    break # we break inner loop and go to next index
+        return dp[0]
+
+
 s = Solution()
 
 print(s.houseRobber([4,7,9,3,1,6,2]))
