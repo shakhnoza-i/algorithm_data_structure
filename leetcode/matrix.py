@@ -60,6 +60,25 @@ class Solution:
         return res
 
     
+    def rotate(self, matrix):
+        l, r = 0, len(matrix) - 1
+        while l < r:
+            for i in range(r - l):
+                top, bottom = l, r
+                # save the top left
+                topleft = matrix[top][l + i]
+                # move bottom left into top left
+                matrix[top][l + i] = matrix[bottom - i][l]
+                # move bottom right into bottom left
+                matrix[bottom - i][l] = matrix[bottom][r - i]
+                # move top right into bottom right
+                matrix[bottom][r - i] = matrix[top + i][r]
+                # move top left into top right
+                matrix[top + i][r] = topleft
+            r -= 1
+            l += 1
+
+    
     def wordSearch(self, board, word): # O(n*m*4*n)
         ROWS, COLS = len(board), len(board[0])
         path = set()

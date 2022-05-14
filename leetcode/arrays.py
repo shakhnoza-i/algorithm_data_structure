@@ -12,7 +12,7 @@ class Solution:
         return nums
 
 
-    def maxProfit(self, prices):
+    def maxProfit2(self, prices): # multiple transactions
         profit = 0
         for i in range(1, len(prices)):
             if prices[i] > prices[i - 1]:
@@ -26,6 +26,7 @@ class Solution:
             nums[l], nums[r] = nums[r], nums[l]
             l, r = l + 1, r - 1
 
+
     def rotate_reverse(self, nums, k): # 0(1)
         k = k % len(nums)
         self.reverse(nums, 0, len(nums)-1)
@@ -38,6 +39,7 @@ class Solution:
         # if index >= len(nums) -> index - len(nums)
         for i in range(len(nums)):
             i = (i + k)%len(nums)
+
 
     def containsDuplicate(self, nums):
         a = set(nums)
@@ -63,6 +65,7 @@ class Solution:
                 c[n]-=1
         return output
 
+
     def plusOne(self, digits):
         digits = digits[::-1] # reverse digits
         one, i = 1, 0
@@ -79,6 +82,7 @@ class Solution:
             i += 1
         return digits[::-1]
 
+
     def moveZeroes(self, nums): # same as removeDublicates
         l = 0
         for r in range(len(nums)):
@@ -87,6 +91,7 @@ class Solution:
                 l += 1
         return nums
 
+
     def twoSum(self, nums, target): # HashMap solution
         prevMap = {} # val: index {n: i} - every previous value store
         for i, n in enumerate(nums): # i - index, n - number
@@ -94,6 +99,7 @@ class Solution:
             if diff in prevMap:
                 return [prevMap[diff], i] # first index, i - second index
             prevMap[n] = i # for value n - index is i
+
 
     def isValidSudoku(self, board):
         cols = collections.defaultdict(set) # key - column number, value - all values in column
@@ -112,23 +118,6 @@ class Solution:
                 squares[(r // 3, c // 3)].add(board[r][c])
         return True
 
-    def rotate(self, matrix):
-        l, r = 0, len(matrix) - 1
-        while l < r:
-            for i in range(r - l):
-                top, bottom = l, r
-                # save the top left
-                topleft = matrix[top][l + i]
-                # move bottom left into top left
-                matrix[top][l + i] = matrix[bottom - i][l]
-                # move bottom right into bottom left
-                matrix[bottom - i][l] = matrix[bottom][r - i]
-                # move top right into bottom right
-                matrix[bottom][r - i] = matrix[top + i][r]
-                # move top left into top right
-                matrix[top + i][r] = topleft
-            r -= 1
-            l += 1
 
     def exceptSelf(self, nums):
         res = [1] * (len(nums))
@@ -221,9 +210,9 @@ class Solution:
 s = Solution()
 
 # print(s.removeDuplicates([1,1,2,2,2,3,4,5,5,6,6,6]))
-print(s.maxProfit([7,1,5,3,6,4]))
-print(s.maxProfit([1,2,3,4,5]))
-print(s.maxProfit([7,6,4,3,1]))
+print(s.maxProfit2([7,1,5,3,6,4]))
+print(s.maxProfit2([1,2,3,4,5]))
+print(s.maxProfit2([7,6,4,3,1]))
 print(s.rotate_reverse([7,6,4,3,1], 2))
 print(s.containsDuplicate([7,6,4,3,1]))
 print(s.containsDuplicate([7,6,6,3,1]))
