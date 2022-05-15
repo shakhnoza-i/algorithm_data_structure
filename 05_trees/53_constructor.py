@@ -6,7 +6,7 @@ add data to a data structure very quickly, but retrieval speed
 isn't very important - LinkedList is better - O(1), while BST - O(log(n))
 
 Insert in BST - Omega (best case) and Theta (average case) are both (log n). 
-However, worst case is O(n) and Big O measures worst case.
+However, worst case(Omicron) is O(n) and Big O measures worst case.
 """
 
 """53.BST: Constructor"""
@@ -73,7 +73,7 @@ class BinarySearchTree:
                 queue.append(current_node.left)
             if current_node.right is not None:
                 queue.append(current_node.right)
-        return results # list is in the same order as tree itself - 
+        return results # list contains node values in the same order as tree itself - 
                        # row by row from top to bottom
 
     """99.DFS preorder: Code"""
