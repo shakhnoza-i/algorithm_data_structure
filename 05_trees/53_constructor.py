@@ -131,3 +131,4 @@ print(my_tree.contains(14)) # False
 print(my_tree.minimum_value(my_tree.root)) # 2
 print(my_tree.minimum_value(my_tree.root.right)) # 10
 print(my_tree.bfs())
+print(my_tree.dfs_inorder())
