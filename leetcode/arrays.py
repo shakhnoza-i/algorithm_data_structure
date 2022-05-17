@@ -92,6 +92,10 @@ class Solution:
         return nums
 
 
+    def dublicateZeros(self, arr): 
+        l = 0 # save value after 0
+
+
     def twoSum(self, nums, target): # HashMap solution
         prevMap = {} # val: index {n: i} - every previous value store
         for i, n in enumerate(nums): # i - index, n - number
