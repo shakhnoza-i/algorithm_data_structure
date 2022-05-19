@@ -1,5 +1,6 @@
 from operator import le
 from typing import List
+from math import factorial
 
 
 class Solution:
@@ -96,6 +97,18 @@ class Solution:
                 return -1  
         return index
 
+    
+    def generate(self, numRows):
+        outer = []
+        for i in range(numRows):
+            inner = []
+            for j in range(i+1):
+                # nCr = n!/((n-r)!*r!)
+                inner.append(factorial(i)//(factorial(i-j) * (factorial(j))))
+            if inner:
+               outer.append(inner)
+        return outer
+
 
 s = Solution()
 
@@ -112,3 +125,4 @@ print(s.pivotIndex([2,1,-1]))
 print(s.pivotIndex([1,-1,2]))
 print(s.dominantIndex([3,1,6,0]))
 print(s.dominantIndex([1,2,3,4]))
+print(s.generate(3))
