@@ -102,7 +102,7 @@ class Solution:
             diff = target - n 
             if diff in prevMap:
                 return [prevMap[diff], i] # first index, i - second index
-            prevMap[n] = i # for value n - index is i
+            prevMap[n] = i # val: index {n: i}
 
 
     def isValidSudoku(self, board):
