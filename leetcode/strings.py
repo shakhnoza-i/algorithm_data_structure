@@ -184,15 +184,14 @@ class Solution:
         return reverse_sentence    
 
     def reverseWords2(self, s: str) -> str:
-        r_sentence = []
-        words = s.split(' ') 
-        for i in range(len(words)):
-            r = list(words[i])
-            r.reverse()
-            r_word = ''.join(r)
-            r_word = str(r_word)
-            r_sentence += r_word
-        return r_sentence
+        s = s.split()
+        s1 = ''
+        for x in range(0, len(s)):
+            if x == len(s) - 1:
+                s1 += s[x][::-1]
+            else:
+                s1 += s[x][::-1] + ' '
+        return s1    
 
 
 s = Solution()
