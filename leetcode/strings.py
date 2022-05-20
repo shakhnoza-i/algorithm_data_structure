@@ -1,6 +1,8 @@
 import math
 from collections import defaultdict
 
+from numpy import r_
+
 class Solution:
     
     def reverseString(self, s): # Two pointers solution
@@ -173,8 +175,29 @@ class Solution:
                 r += 1
         return res
 
+    def reverseWords(self, s: str) -> str:
+        # first split the string into words 
+        words = s.split(' ') 
+        # then reverse the split string list and join using space 
+        words.reverse()
+        reverse_sentence = ' '.join(words)
+        return reverse_sentence    
+
+    def reverseWords2(self, s: str) -> str:
+        r_sentence = []
+        words = s.split(' ') 
+        for i in range(len(words)):
+            r = list(words[i])
+            r.reverse()
+            r_word = ''.join(r)
+            r_word = str(r_word)
+            r_sentence += r_word
+        return r_sentence
+
 
 s = Solution()
 
-a = s.lengthOfUniqueSubstring("yfhdjfos")
-b = s.isValidParentheses("]([{}))")
+# a = s.lengthOfUniqueSubstring("yfhdjfos")
+# b = s.isValidParentheses("]([{}))")
+# print(s.reverseString("the sky is blue"))
+print(s.reverseWords2("the sky is blue"))

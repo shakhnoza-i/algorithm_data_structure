@@ -110,6 +110,14 @@ class Solution:
         return outer
 
 
+    def arrayPairSum(self, nums: List[int]) -> int:
+        x = sorted(nums)
+        summ = 0
+        for i in range(0, len(x), 2):
+            summ += x[i]
+        return summ
+
+
 s = Solution()
 
 print(s.findMaxConsecutiveOnes([0,1,1,1,0,0,1,1]))
