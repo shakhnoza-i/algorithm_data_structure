@@ -118,6 +118,22 @@ class Solution:
         return summ
 
 
+    def majorityElement(self, nums):
+        if len(nums) < 3:
+            return nums[0]
+        nums=sorted(nums)
+        seq = 1
+        max_seq = 1
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]:
+                seq += 1
+                max_seq = max(max_seq, seq)
+                if max_seq >= (len(nums)+1)//2:
+                    return nums[i]
+            else:
+                seq = 1
+
+
 s = Solution()
 
 print(s.findMaxConsecutiveOnes([0,1,1,1,0,0,1,1]))
@@ -134,3 +150,4 @@ print(s.pivotIndex([1,-1,2]))
 print(s.dominantIndex([3,1,6,0]))
 print(s.dominantIndex([1,2,3,4]))
 print(s.generate(3))
+print(s.majorityElement([2,2,1,1,1,2,2]))
