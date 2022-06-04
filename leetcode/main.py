@@ -28,7 +28,7 @@ class Solution:
         a = sorted(unique)
         return a
 
-    def repeat(self, text, k): # HashMap solution
+    def repeat(self, text, k):
         words = text.split() 
         word = set([x for x in words if words.count(x) >= k])
         word = list(word)

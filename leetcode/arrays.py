@@ -26,7 +26,6 @@ class Solution:
             nums[l], nums[r] = nums[r], nums[l]
             l, r = l + 1, r - 1
 
-
     def rotate_reverse(self, nums, k): # 0(1)
         k = k % len(nums)
         self.reverse(nums, 0, len(nums)-1)
@@ -90,10 +89,6 @@ class Solution:
                 nums[l], nums[r] = nums[r], nums[l]
                 l += 1
         return nums
-
-
-    def dublicateZeros(self, arr): 
-        l = 0 # save value after 0
 
 
     def twoSum(self, nums, target): # HashMap solution
